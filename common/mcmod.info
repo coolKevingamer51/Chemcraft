@@ -1,0 +1,20 @@
+[
+{
+  "modid": "Chemcraft",
+  "name": "Chemistry for Minecraft",
+  "description": "Adds Chemistry to Minecraft, basically everything on the periodic table along with many other molecules and structures, along with lots of fun and 'unrealistic' chemical theories with the help of the mysterious redstone.",
+  "version": "0.0.1",
+  "url": "",
+  "updateUrl": "",
+  "authorList": [
+    "PTTGRW"
+  ],
+  "credits": "",
+  "logoFile": "",
+  "screenshots": [
+  ],
+  "parent":"",
+  "dependencies": [
+  ]
+}
+]
