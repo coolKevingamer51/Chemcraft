@@ -2,8 +2,9 @@ package chemcraft;
 
 
 
+import net.minecraftforge.common.Configuration;
 import chemcraft.blocks.ChemcraftBlock;
-import chemcraft.items.ChemcraftItem;
+import chemcraft.items.*;
 import chemcraft.lib.Reference;
 import chemcraft.recipes.ChemcraftShapelessHandler;
 import chemcraft.recipes.ChemcraftSmeltingHandler;
@@ -16,10 +17,15 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
+import cpw.mods.fml.common.registry.LanguageRegistry;
+
 
 @Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = Reference.VERSION)
 @NetworkMod(clientSideRequired = true, serverSideRequired = false)
 public class Chemcraft {
+    
+    private int blockId;
+   
     
     @PreInit
     public void preInit(FMLPreInitializationEvent event){
@@ -29,12 +35,21 @@ public class Chemcraft {
         ChemcraftItem.languageRegisterItems();
         ChemcraftShapelessHandler.registerShapeless();
         ChemcraftSmeltingHandler.registerSmelting();
+        
+        Configuration cfg = new Configuration(event.getSuggestedConfigurationFile());
+        blockId = cfg.getBlock("salt", 975).getInt(975);
+        ChemcraftElementalItems.buildItems(cfg, 19501);
     }
     
     
     @Init
     public void init(FMLInitializationEvent event){
         WorldGenChemcraft.registerChemcraftBlocksGen();
+        
+        for (ChemcraftElementalItems typ : ChemcraftElementalItems.values())
+        {
+            LanguageRegistry.instance().addStringLocalization("item." + typ.name + ".name", "en_US", typ.descname);
+        }
     }
     
     @PostInit
