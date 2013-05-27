@@ -33,12 +33,13 @@ public class Chemcraft {
         ChemcraftBlock.languageRegisterBlocks(); 
         ChemcraftItem.gameRegisterItems();
         ChemcraftItem.languageRegisterItems();
-        ChemcraftShapelessHandler.registerShapeless();
+        
         ChemcraftSmeltingHandler.registerSmelting();
         
         Configuration cfg = new Configuration(event.getSuggestedConfigurationFile());
         blockId = cfg.getBlock("salt", 975).getInt(975);
         ChemcraftElementalItems.buildItems(cfg, 19501);
+        ChemcraftShapelessHandler.registerShapeless();
     }
     
     
